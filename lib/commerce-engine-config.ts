@@ -14,6 +14,7 @@ import {
   definePagination,
   defineProductView,
   ContextState,
+  defineRecommendations,
 } from "@coveo/headless-react/ssr-commerce";
 
 export const defaultContext: {
@@ -28,8 +29,8 @@ export const defaultContext: {
 
 export default {
   configuration: {
-    organizationId: "xxx",
-    accessToken: "xxx",
+    organizationId: "searchuisamples",
+    accessToken: "xx9b057d0c-2938-4046-bb39-59cfebfbc882",
     context: {
       ...defaultContext,
       view: {
@@ -37,7 +38,7 @@ export default {
       },
     },
     analytics: {
-      trackingId: "xxx",
+      trackingId: "sports-ui-samples",
     },
   },
   controllers: {
@@ -55,5 +56,10 @@ export default {
     sort: defineSort(),
     pagination: definePagination(),
     productView: defineProductView(),
+    popularViewedHome: defineRecommendations({
+      options: {
+        slotId: "4fa67df0-96b2-47b2-9fd0-3afc199aa638",
+      },
+    }),
   },
 } satisfies CommerceEngineDefinitionOptions;
