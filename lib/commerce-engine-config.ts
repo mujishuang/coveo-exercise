@@ -22,14 +22,14 @@ export const defaultContext: {
   currency: ContextState["currency"];
 } = {
   language: "en",
-  country: "US",
-  currency: "USD",
+  country: "CA",
+  currency: "CAD",
 };
 
 export default {
   configuration: {
-    organizationId: "xxx",
-    accessToken: "xxx",
+    organizationId: "ps3so7mwijvbogmugn3aslbcnzy",
+    accessToken: "xxca849d10-e6e0-4a61-b4fc-3930aae5ba82",
     context: {
       ...defaultContext,
       view: {
@@ -37,7 +37,7 @@ export default {
       },
     },
     analytics: {
-      trackingId: "xxx",
+      trackingId: "barca_sports_fasttrack",
     },
   },
   controllers: {
@@ -53,7 +53,11 @@ export default {
     parameterManager: defineParameterManager(),
     facetGenerator: defineFacetGenerator(),
     sort: defineSort(),
-    pagination: definePagination(),
+    pagination: definePagination({
+      options: {
+        pageSize: 16
+      }
+    }),
     productView: defineProductView(),
   },
 } satisfies CommerceEngineDefinitionOptions;

@@ -39,6 +39,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
                 <nav className="hidden md:flex items-center space-x-8">
                   <Link
+                    href="/listing"
+                    className="text-gray-700 font-medium hover:text-blue-600 transition-colors duration-200"
+                  >
+                    Shop All
+                  </Link>
+                  <Link
                     href="/surf-accessories"
                     className="text-gray-700 font-medium hover:text-blue-600 transition-colors duration-200"
                   >
@@ -55,6 +61,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                     className="text-gray-700 font-medium hover:text-blue-600 transition-colors duration-200"
                   >
                     Toys
+                  </Link>
+                  <Link
+                    href="/trampoline"
+                    className="text-gray-700 font-medium hover:text-blue-600 transition-colors duration-200"
+                  >
+                    Trampoline
                   </Link>
                 </nav>
 

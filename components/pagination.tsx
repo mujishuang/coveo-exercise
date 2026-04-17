@@ -6,27 +6,52 @@ export default function Pagination() {
   const pagination = usePagination();
   const { totalPages, page } = pagination.state;
 
-  const getPageNumbers = (): number[] => {
-    const pages: number[] = [];
-    const maxPages = 5;
+  const getPageNumbers = (): (number | string)[] => {
+    const pages: (number | string)[] = [];
+    const maxVisiblePages = 5;
 
-    if (totalPages <= maxPages) {
+    // If total pages is small, show all pages
+    if (totalPages <= maxVisiblePages + 2) {
       for (let i = 0; i < totalPages; i++) {
         pages.push(i);
       }
       return pages;
     }
 
-    let start = Math.max(0, page - Math.floor(maxPages / 2));
-    let end = start + maxPages - 1;
-    if (end >= totalPages) {
-      end = totalPages - 1;
-      start = Math.max(0, end - maxPages + 1);
+    // Always show first page
+    pages.push(0);
+
+    // Calculate the range of pages to show around current page
+    let start = Math.max(1, page - 1);
+    let end = Math.min(totalPages - 2, page + 1);
+
+    // Adjust range if we're near the beginning
+    if (page <= 2) {
+      end = Math.min(totalPages - 2, 3);
     }
 
+    // Adjust range if we're near the end
+    if (page >= totalPages - 3) {
+      start = Math.max(1, totalPages - 4);
+    }
+
+    // Add ellipsis before middle pages if needed
+    if (start > 1) {
+      pages.push("...");
+    }
+
+    // Add middle pages
     for (let i = start; i <= end; i++) {
       pages.push(i);
     }
+
+    // Add ellipsis after middle pages if needed
+    if (end < totalPages - 2) {
+      pages.push("...");
+    }
+
+    // Always show last page
+    pages.push(totalPages - 1);
 
     return pages;
   };
@@ -47,17 +72,23 @@ export default function Pagination() {
 
         {pageNumbers.map((curPage, index) => (
           <div key={`${curPage}-${index}`}>
-            <button
-              onClick={() => pagination.methods?.selectPage(curPage)}
-              className={
-                page === curPage
-                  ? "h-10 w-10 flex items-center justify-center rounded-md text-sm font-medium bg-indigo-600 text-white cursor-pointer"
-                  : "h-10 w-10 flex items-center justify-center rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100 cursor-pointer"
-              }
-              aria-current={page === curPage ? "page" : undefined}
-            >
-              {curPage + 1}
-            </button>
+            {curPage === "..." ? (
+              <span className="h-10 w-10 flex items-center justify-center text-gray-400">
+                ...
+              </span>
+            ) : (
+              <button
+                onClick={() => pagination.methods?.selectPage(curPage as number)}
+                className={
+                  page === curPage
+                    ? "h-10 w-10 flex items-center justify-center rounded-md text-sm font-medium bg-indigo-600 text-white cursor-pointer"
+                    : "h-10 w-10 flex items-center justify-center rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100 cursor-pointer"
+                }
+                aria-current={page === curPage ? "page" : undefined}
+              >
+                {(curPage as number) + 1}
+              </button>
+            )}
           </div>
         ))}
 
