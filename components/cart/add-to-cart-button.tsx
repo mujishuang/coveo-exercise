@@ -1,19 +1,19 @@
 "use client";
 
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
-import { Product } from "@coveo/headless-react/ssr-commerce";
+import { Product, ProductList, Recommendations } from "@coveo/headless-react/ssr-commerce";
 import { useMockServerCartService } from "../providers/server-cart-provider";
-import { useCart, useProductList } from "@/lib/commerce-engine";
+import { useCart } from "@/lib/commerce-engine";
 import { useState } from "react";
 
 export interface AddToCartButtonProps {
   product: Product;
+  methods?: Omit<Recommendations, "state" | "subscribe"> | Omit<ProductList, "state" | "subscribe">;
 }
 
-export default function AddToCartButton({ product }: AddToCartButtonProps) {
+export default function AddToCartButton({ product, methods }: AddToCartButtonProps) {
   const { addToCart, isLoading } = useMockServerCartService();
   const coveoHeadlessCart = useCart();
-  const productList = useProductList();
   const [isAdding, setIsAdding] = useState(false);
 
   const handleAddToCart = async () => {
@@ -28,9 +28,11 @@ export default function AddToCartButton({ product }: AddToCartButtonProps) {
         quantity: 1,
       });
 
-      // Since this add to cart button is directly embedded in a product list,
-      // we must also trigger the proper method on the product list, equivalent to a user selecting the product
-      productList.methods?.interactiveProduct({ options: { product } }).select();
+      // If methods are provided (from ProductList or Recommendations),
+      // trigger the proper method, equivalent to a user selecting the product
+      if (methods) {
+        methods.interactiveProduct({ options: { product } }).select();
+      }
     } catch (error) {
       console.error("Failed to add to cart:", error);
     } finally {

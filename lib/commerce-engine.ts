@@ -37,4 +37,5 @@ export const {
   useSort,
   usePagination,
   useProductView,
+  usePopularViewedHome,
 } = engineDefinition.controllers;

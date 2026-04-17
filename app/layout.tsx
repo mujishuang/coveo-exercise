@@ -37,7 +37,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                   </Link>
                 </div>
 
-                <nav className="hidden md:flex items-center space-x-8">
+                <nav className="hidden md:flex items-center space-x-4">
                   <Link
                     href="/listing"
                     className="text-gray-700 font-medium hover:text-blue-600 transition-colors duration-200"

@@ -13,6 +13,7 @@ import {
   defineSort,
   definePagination,
   defineProductView,
+  defineRecommendations,
   ContextState,
 } from "@coveo/headless-react/ssr-commerce";
 
@@ -59,5 +60,8 @@ export default {
       }
     }),
     productView: defineProductView(),
+    popularViewedHome: defineRecommendations({
+      options: { slotId: "7e097dae-5a5a-4617-83b4-f53a77d1b392" },
+    }),
   },
 } satisfies CommerceEngineDefinitionOptions;

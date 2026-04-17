@@ -47,7 +47,7 @@ export default function ProductButtonWithImage({ methods, product }: ProductButt
         {/* Price and add to cart section */}
         <div className="mt-auto pt-3 border-t border-gray-100 flex justify-between items-center">
           <span className="font-bold text-lg text-blue-900">${product.ec_price}</span>
-          <AddToCartButton product={product} />
+          <AddToCartButton product={product} methods={methods} />
         </div>
       </div>
     </div>

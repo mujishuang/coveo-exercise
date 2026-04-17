@@ -1,6 +1,10 @@
 "use client";
 
-import { searchEngineDefinition, standaloneEngineDefinition } from "@/lib/commerce-engine";
+import {
+    searchEngineDefinition,
+    standaloneEngineDefinition,
+    recommendationEngineDefinition
+} from "@/lib/commerce-engine";
 import { buildProviderWithDefinition } from "@coveo/headless-react/ssr-commerce";
 import { MockServerCartProvider } from "./server-cart-provider";
 
@@ -11,7 +15,7 @@ import { MockServerCartProvider } from "./server-cart-provider";
 export const SearchProvider = buildProviderWithDefinition(searchEngineDefinition);
 
 // Wraps recommendations, whether in a standalone, search, or listing page
-// TODO: Implement recommendations engine definition and provider
+export const RecommendationProvider = buildProviderWithDefinition(recommendationEngineDefinition);
 
 export const StandaloneProvider = buildProviderWithDefinition(standaloneEngineDefinition);
 
