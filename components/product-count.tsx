@@ -16,4 +16,3 @@ export default function ProductCount({ label }: ProductCountProps) {
     );
 }
 
-// Made with Bob

@@ -1,33 +1,29 @@
 import ProductList from "@/components/product-list";
-import { SearchProvider } from "@/components/providers/providers";
+import { ListingProvider } from "@/components/providers/providers";
 import FacetGenerator from "@/components/facets/facet-generator";
 import { buildParameterSerializer } from "@coveo/headless-react/ssr-commerce";
 import ParameterManager from "@/components/parameter-manager";
 import Sort from "@/components/sort";
 import Pagination from "@/components/pagination";
 import { fetchCoveoStaticState } from "@/lib/fetch-coveo-static-state";
+import ProductCount from "@/components/product-count";
 
-export default async function Toys({ searchParams }: { searchParams: Promise<URLSearchParams> }) {
+export default async function SurfAccessories({ searchParams }: { searchParams: Promise<URLSearchParams> }) {
     const { deserialize } = buildParameterSerializer();
     const urlParameters = deserialize(await searchParams);
 
-    const searchParameters = {
-        ...urlParameters,
-        q: "Toys",
-    };
-
-    const { staticState, navigatorContext } = await fetchCoveoStaticState("searchEngineDefinition", {
-        urlParameters: searchParameters,
-        url: "https://sports.barca.group/toys",
+    const { staticState, navigatorContext } = await fetchCoveoStaticState("listingEngineDefinition", {
+        urlParameters,
+        url: "https://sports.barca.group/plp/accessories/surf-accessories/water-bottles",
     });
 
     return (
-        <SearchProvider staticState={staticState} navigatorContext={navigatorContext.marshal}>
+        <ListingProvider staticState={staticState} navigatorContext={navigatorContext.marshal}>
             <ParameterManager url={navigatorContext.location} />
             <div className="container mx-auto px-4 py-8">
                 <div className="mb-8">
-                    <h1 className="text-4xl font-bold text-gray-900 mb-2">Toys</h1>
-                    <p className="text-gray-600">Browse our collection of toys</p>
+                    <h1 className="text-4xl font-bold text-gray-900 mb-2">Surf Accessories</h1>
+                    <p className="text-gray-600">Discover our collection of premium surf accessories</p>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
@@ -40,9 +36,8 @@ export default async function Toys({ searchParams }: { searchParams: Promise<URL
 
                     <div className="lg:col-span-3 order-2 lg:order-2">
                         <div className="flex justify-between items-center mb-4">
-                            <div className="text-sm text-gray-600">
-                                Browse toys
-                            </div>
+                            <ProductCount label="Browse surf accessories" />
+                            <Pagination />
                             <Sort />
                         </div>
 
@@ -54,10 +49,8 @@ export default async function Toys({ searchParams }: { searchParams: Promise<URL
                     </div>
                 </div>
             </div>
-        </SearchProvider>
+        </ListingProvider>
     );
 }
 
 export const dynamic = "force-dynamic";
-
-// Made with Bob

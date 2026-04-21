@@ -54,5 +54,3 @@ export default async function Kayaks({ searchParams }: { searchParams: Promise<U
 }
 
 export const dynamic = "force-dynamic";
-
-// Made with Bob
