@@ -136,14 +136,12 @@ console.log("summary state", state);
 
 The following changes and findings are relevant to the current solution:
 
-### 1. Listing page label behavior
+### 1. Listing page ProductCount behavior
 
-The text rendered by [`ProductCount`](components/product-count.tsx) does **not** come from the commerce URL directly.  
+The text rendered by [`ProductCount`](components/product-count.tsx).  
 It is built from:
 - the `label` prop passed by each page
 - the product total from `state.totalNumberOfProducts`
-
-That means if you want text such as `Coveo Product listing page - Kayaks`, you must change the `label` prop in the corresponding page file.
 
 Relevant files:
 - [`app/listing/kayaks/page.tsx`](app/listing/kayaks/page.tsx)
@@ -151,6 +149,4 @@ Relevant files:
 - [`app/listing/surf-accessories/page.tsx`](app/listing/surf-accessories/page.tsx)
 - [`app/listing/toys/page.tsx`](app/listing/toys/page.tsx)
 
-### 2. Recommended improvement
-
-If you want to avoid manually maintaining page labels in multiple files, consider extracting the label format into a shared helper or deriving it from a page-specific constant. That would reduce copy/paste mistakes across listing pages.
+### 2. Listing page pagination behavior
