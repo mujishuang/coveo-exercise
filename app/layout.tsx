@@ -45,7 +45,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                     Shop All
                   </Link>
                   <Link
-                    href="/surf-accessories"
+                    href="/accessories/surf-accessories"
                     className="text-gray-700 font-medium hover:text-blue-600 transition-colors duration-200"
                   >
                     Surf Accessories
@@ -63,10 +63,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                     Toys
                   </Link>
                   <Link
-                    href="/trampoline"
+                    href="/plp/kayaks"
                     className="text-gray-700 font-medium hover:text-blue-600 transition-colors duration-200"
                   >
-                    Trampoline
+                    Kayaks
                   </Link>
                 </nav>
 
