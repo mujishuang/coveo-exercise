@@ -40,7 +40,7 @@ export default async function Paddleboards({ searchParams }: { searchParams: Pro
                     <div className="lg:col-span-3 order-2 lg:order-2">
                         {/* Sort Controls */}
                         <div className="flex justify-between items-center mb-4">
-                            <ProductCount label="Browse paddleboards" />
+                            <ProductCount label="Browse Paddleboards" />
                             <Pagination />
                             <Sort />
                         </div>

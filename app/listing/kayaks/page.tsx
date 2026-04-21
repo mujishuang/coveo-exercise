@@ -36,7 +36,7 @@ export default async function Kayaks({ searchParams }: { searchParams: Promise<U
 
                     <div className="lg:col-span-3 order-2 lg:order-2">
                         <div className="flex justify-between items-center mb-4">
-                            <ProductCount label="Browse kayaks" />
+                            <ProductCount label="Browse Kayaks" />
                             <Pagination />
                             <Sort />
                         </div>

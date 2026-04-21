@@ -36,7 +36,7 @@ export default async function Toys({ searchParams }: { searchParams: Promise<URL
 
                     <div className="lg:col-span-3 order-2 lg:order-2">
                         <div className="flex justify-between items-center mb-4">
-                            <ProductCount label="Browse surf accessories" />
+                            <ProductCount label="Browse Games & Toys" />
                             <Pagination />
                             <Sort />
                         </div>

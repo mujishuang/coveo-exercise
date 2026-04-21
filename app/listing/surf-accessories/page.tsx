@@ -36,7 +36,7 @@ export default async function SurfAccessories({ searchParams }: { searchParams: 
 
                     <div className="lg:col-span-3 order-2 lg:order-2">
                         <div className="flex justify-between items-center mb-4">
-                            <ProductCount label="Browse surf accessories" />
+                            <ProductCount label="Browse Surf Accessories" />
                             <Pagination />
                             <Sort />
                         </div>
